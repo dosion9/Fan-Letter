@@ -1,5 +1,11 @@
+import Router from "./shared/Router";
+
 function App() {
-  return <>준비 완료</>;
+  return (
+    <>
+      <Router />
+    </>
+  );
 }
 
 export default App;
