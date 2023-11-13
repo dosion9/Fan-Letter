@@ -50,12 +50,6 @@ table {
 	border-spacing: 0;
 }
 
-/*  */
-body {
-    background-color: lightgray;
-}
-
-
 `;
 
 export default GlobalStyle;
