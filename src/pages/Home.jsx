@@ -13,7 +13,7 @@ function Home(props) {
       ></Header>
       <Form member={props.member} selectedMember={props.selectedMember} onAddLetter={props.onAddLetter}></Form>
       <S.Container>
-        {props.letterdata
+        {props.letterData
           .filter((m) => m.writedTo === props.selectedMember)
           .map((n, i) => {
             return <Letter data={n} key={`letter-${i}`}></Letter>;

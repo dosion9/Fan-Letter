@@ -13,12 +13,21 @@ const Router = (props) => {
               member={props.member}
               selectedMember={props.selectedMember}
               onChangeMember={props.onChangeMember}
-              letterdata={props.letterdata}
+              letterData={props.letterData}
               onAddLetter={props.onAddLetter}
             />
           }
         />
-        <Route path="detail/:id" element={<Detail />} />
+        <Route
+          path="detail/:id"
+          element={
+            <Detail
+              letterData={props.letterData}
+              onChangeLetter={props.onChangeLetter}
+              onDeleteLetter={props.onDeleteLetter}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

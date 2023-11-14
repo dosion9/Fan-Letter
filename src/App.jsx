@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Router from "./shared/Router";
 import GlobalStyle from "style/Global";
 import { ThemeProvider } from "styled-components";
@@ -10,8 +10,22 @@ import member from "assets/data/member";
 import mockLetterData from "assets/data/mockLetterData";
 function App() {
   const [selectedMember, setSelectedMember] = useState(member[0].name);
-  const [letterdata, setLetterData] = useState(mockLetterData);
+  const [letterData, setLetterData] = useState(mockLetterData);
+
   const handleChangeMember = (string) => setSelectedMember(string);
+  const handleDeleteLetter = (id) => {
+    const copy = [...letterData];
+    const index = copy.findIndex((n) => n.id === id);
+    copy.splice(index, 1);
+    setLetterData(copy);
+  };
+
+  const handleChangeLetter = (id, content) => {
+    const copy = [...letterData];
+    const index = copy.findIndex((n) => n.id === id);
+    copy[index].content = content;
+    setLetterData(copy);
+  };
   const handleAddLetterData = (nickname, content, writedTo = selectedMember) => {
     const data = {
       createdAt: new Date().toDateString(),
@@ -21,13 +35,11 @@ function App() {
       writedTo: writedTo,
       id: uuidv4()
     };
-    const copy = [...letterdata];
+    const copy = [...letterData];
     copy.push(data);
     setLetterData(copy);
   };
-  useEffect(() => {
-    console.log(selectedMember);
-  }, [selectedMember]);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -37,7 +49,9 @@ function App() {
           selectedMember={selectedMember}
           onChangeMember={handleChangeMember}
           onAddLetter={handleAddLetterData}
-          letterdata={letterdata}
+          letterData={letterData}
+          onChangeLetter={handleChangeLetter}
+          onDeleteLetter={handleDeleteLetter}
         />
       </ThemeProvider>
     </>

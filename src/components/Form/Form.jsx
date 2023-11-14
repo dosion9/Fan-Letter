@@ -11,14 +11,15 @@ function Form(props) {
   const handleSubmit = (e) => {
     if (nickname === "" || content === "") {
       alert("빈칸을 채워주세여");
-      e.preventDefault();
+    } else if (nickname.length > 10 || content.length > 100) {
+      alert("닉네임은 10자 이내, 내용은 100자 이내로 적어주세요");
     } else {
       props.onAddLetter(nickname, content, writedTo);
       SetWritedTo(props.selectedMember);
       setNickname("");
       setContent("");
-      e.preventDefault();
     }
+    e.preventDefault();
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -39,13 +40,18 @@ function Form(props) {
       <div>
         <label htmlFor="">
           닉네임
-          <input type="text" value={nickname} onChange={(e) => handleChange(e, setNickname)} />
+          <input type="text" value={nickname} placeholder="닉네임" onChange={(e) => handleChange(e, setNickname)} />
         </label>
       </div>
       <div>
         <label htmlFor="">
           내용
-          <textarea type="text" value={content} onChange={(e) => handleChange(e, setContent)}></textarea>
+          <textarea
+            type="text"
+            value={content}
+            placeholder="내용을 적어주세요"
+            onChange={(e) => handleChange(e, setContent)}
+          ></textarea>
         </label>
       </div>
 
