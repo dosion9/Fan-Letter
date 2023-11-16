@@ -1,10 +1,30 @@
 import React from "react";
+import theme from "style/Theme";
+import styled from "styled-components";
 
-function UserImg({ avatar, nickname }) {
+const ImgWrap = styled.figure`
+  position: absolute;
+  top: ${theme.spacing.lg};
+  left: ${theme.spacing.lg};
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: ${(props) => theme.border[props.color] || theme.border.black};
+  overflow: hidden;
+`;
+
+const Img = styled.img.attrs((props) => ({
+  src: props.avatar
+}))`
+  width: 100%;
+  height: 100%;
+`;
+
+function UserImg({ avatar, color }) {
   return (
-    <div className="letter__img-wrap">
-      <img src={avatar} alt={`${nickname}의 avatar`} className="letter__img" />
-    </div>
+    <ImgWrap color={color}>
+      <Img avatar={avatar}></Img>
+    </ImgWrap>
   );
 }
 

@@ -1,33 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
+import Ui from "../pages/Ui";
 
-const Router = (props) => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              member={props.member}
-              selectedMember={props.selectedMember}
-              onChangeMember={props.onChangeMember}
-              letterData={props.letterData}
-              onAddLetter={props.onAddLetter}
-            />
-          }
-        />
-        <Route
-          path="detail/:id"
-          element={
-            <Detail
-              letterData={props.letterData}
-              onChangeLetter={props.onChangeLetter}
-              onDeleteLetter={props.onDeleteLetter}
-            />
-          }
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="detail/:id" element={<Detail />} />
+        <Route path="ui" element={<Ui />} />
       </Routes>
     </BrowserRouter>
   );
