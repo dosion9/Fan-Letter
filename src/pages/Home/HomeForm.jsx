@@ -10,7 +10,7 @@ import Form from "components/ui/Form";
 
 const memberNameList = member.map((n) => n.name);
 
-function HomeForm({ onCreateLetter }) {
+function HomeForm({ onCreateLetter, onChangeModalContent, onOpenModal }) {
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
   const [writedTo, setWritedTo] = useState(memberNameList[0]);
@@ -24,14 +24,14 @@ function HomeForm({ onCreateLetter }) {
 
     if (validation === true) {
       onCreateLetter(nickname, content, writedTo);
-      setNickname("");
-      setContent("");
-      setWritedTo(memberNameList[0]);
-      e.preventDefault();
     } else {
-      console.log(validation);
-      e.preventDefault();
+      onChangeModalContent(validation);
+      onOpenModal();
     }
+    setNickname("");
+    setContent("");
+    setWritedTo(memberNameList[0]);
+    e.preventDefault();
   };
 
   return (

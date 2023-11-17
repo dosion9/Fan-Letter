@@ -13,6 +13,11 @@ const Wrap = styled.section`
   padding: ${theme.spacing.lg};
   padding-left: calc(${theme.spacing.lg}* 2 + 3.5rem);
   position: relative;
+  cursor: pointer;
+  transition: ${theme.transition.base};
+  &:hover {
+    ${theme.animationEffect.hover}
+  }
 `;
 
 const Header = styled.div`

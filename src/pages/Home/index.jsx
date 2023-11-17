@@ -11,7 +11,9 @@ function Home() {
   const [selectMember, setSelectMember] = useState("하니");
   const [letterData, setLetterData] = useState([]);
   const [modalState, setModalState] = useState(false);
-  const handleClick = (member) => {
+  const [modalContent, setModalContent] = useState("");
+
+  const changeSelectMember = (member) => {
     setSelectMember(member);
   };
 
@@ -22,6 +24,7 @@ function Home() {
     setLetterData(copy);
   };
 
+  const changeModalContent = (str) => setModalContent(str);
   const openModal = () => setModalState(true);
   const closeModal = () => setModalState(false);
 
@@ -31,12 +34,18 @@ function Home() {
 
   return (
     <>
-      <Modal type={"waring"} modalState={modalState} onClose={closeModal}></Modal>
+      <Modal type={"waring"} modalState={modalState} onClose={closeModal}>
+        {modalContent}
+      </Modal>
       <button onClick={openModal}>모달 열기</button>
       <Hero>
-        <MemberBtnGroup selectMember={selectMember} onClick={handleClick}></MemberBtnGroup>
+        <MemberBtnGroup selectMember={selectMember} onClick={changeSelectMember}></MemberBtnGroup>
       </Hero>
-      <HomeForm onCreateLetter={createLetter}></HomeForm>
+      <HomeForm
+        onCreateLetter={createLetter}
+        onChangeModalContent={changeModalContent}
+        onOpenModal={openModal}
+      ></HomeForm>
       <LetterGroup letterData={letterData} selectMember={selectMember}></LetterGroup>
     </>
   );

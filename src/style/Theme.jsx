@@ -6,7 +6,8 @@ const color = {
   green: "lightgreen",
   purple: "#6f42c1",
   yellow: "gold",
-  waring: "#ff0000" // 잘못된 지정을 했을 때 나오는 색
+  waring: "#ff0000", // 잘못된 지정을 했을 때 나오는 색
+  shadow: "#252525a9"
 };
 
 const fontSize = {
@@ -17,14 +18,14 @@ const fontSize = {
 };
 
 const border = {
-  white: "3px solid #ffffff",
-  black: "3px solid #252525",
-  pink: "3px solid pink",
-  blue: "3px solid skyblue",
-  green: "3px solid lightgreen",
-  purple: "3px solid #6f42c1",
-  yellow: "3px solid gold",
-  waring: "3px solid #ff0000", // 잘못된 지정을 했을 때 나오는 색
+  white: `3px solid ${color.white}`,
+  black: `3px solid ${color.black}`,
+  pink: `3px solid ${color.pink}`,
+  blue: `3px solid ${color.blue}`,
+  green: `3px solid ${color.green}`,
+  purple: `3px solid ${color.purple}`,
+  yellow: `3px solid ${color.yellow}`,
+  waring: `3px solid ${color.waring}`, // 잘못된 지정을 했을 때 나오는 색
   borderRadius: "1em"
 };
 
@@ -38,12 +39,17 @@ const transition = {
   base: "all 0.15s"
 };
 
+const animationEffect = {
+  hover: { transform: "translateX(-8px) translateY(-4px)", boxShadow: `5px 5px 5px ${color.shadow}` }
+};
+
 const theme = {
   color,
   fontSize,
   border,
   spacing,
-  transition
+  transition,
+  animationEffect
 };
 
 export default theme;
