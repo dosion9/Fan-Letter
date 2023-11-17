@@ -52,26 +52,30 @@ const modalType = {
   alert: { header: "알림", color: "blue" }
 };
 
-function Modal({ children, onClose, type }) {
+function Modal({ children, modalState, onClose, type }) {
   const close = (e) => {
     e.target.dataset.modal !== "dimmer" ? e.preventDefault() : onClose();
   };
 
   return (
-    <StDimmer data-modal="dimmer" onClick={close}>
-      <StModalWrap $color={modalType[type]?.color || "green"} onClick={close}>
-        <div className="header">{modalType?.[type].header || type}</div>
-        <div className="body">{children}</div>
-        <div className="footer">
-          <Button $outline={"true"} $color={"blue"} $onClick={onClose}>
-            확인
-          </Button>
-          <Button $outline={"true"} $color={"pink"} $onClick={onClose}>
-            취소
-          </Button>
-        </div>
-      </StModalWrap>
-    </StDimmer>
+    <>
+      {modalState ? (
+        <StDimmer data-modal="dimmer" onClick={close}>
+          <StModalWrap $color={modalType[type]?.color || "green"}>
+            <div className="header">{modalType?.[type].header || type}</div>
+            <div className="body">{children}</div>
+            <div className="footer">
+              <Button outline={"true"} color={"blue"} onClick={close}>
+                확인
+              </Button>
+              <Button outline={"true"} color={"pink"} onClick={onClose}>
+                취소
+              </Button>
+            </div>
+          </StModalWrap>
+        </StDimmer>
+      ) : null}
+    </>
   );
 }
 
