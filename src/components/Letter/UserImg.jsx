@@ -14,7 +14,7 @@ const ImgWrap = styled.figure`
 `;
 
 const Img = styled.img.attrs((props) => ({
-  src: props.avatar
+  src: props.$avatar
 }))`
   width: 100%;
   height: 100%;
@@ -23,7 +23,7 @@ const Img = styled.img.attrs((props) => ({
 function UserImg({ avatar, color }) {
   return (
     <ImgWrap color={color}>
-      <Img avatar={avatar}></Img>
+      <Img $avatar={avatar}></Img>
     </ImgWrap>
   );
 }

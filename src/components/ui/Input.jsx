@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import theme from "style/Theme";
 
-const StInputWrap = styled.div``;
-
 const StInput = styled.input.attrs((props) => ({
   type: props?.$type || "text",
   placeholder: props?.$placeholder,
   value: props.$value,
-  onChange: props?.$onChange
+  onChange: props?.$onChange,
+  name: props.$name
 }))`
   padding: 0.5rem;
   outline: none;
@@ -16,11 +15,18 @@ const StInput = styled.input.attrs((props) => ({
   border-radius: ${theme.border.borderRadius};
 `;
 
-function Input({ $type, $placeholder, $value, $onChange, $color }) {
+function Input({ type, placeholder, value, onChange, color, name }) {
   return (
-    <StInputWrap>
-      <StInput $type={$type} $value={$value} $placeholder={$placeholder} $onChange={$onChange} $color={$color} />
-    </StInputWrap>
+    <>
+      <StInput
+        $type={type}
+        $value={value}
+        $placeholder={placeholder}
+        $onChange={onChange}
+        $color={color}
+        $name={name}
+      />
+    </>
   );
 }
 

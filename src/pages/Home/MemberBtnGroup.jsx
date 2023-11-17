@@ -13,12 +13,21 @@ const StBtnGroupWrap = styled.div`
   justify-content: center;
 `;
 
-function MemberBtnGroup() {
+function MemberBtnGroup({ selectMember, onClick }) {
   return (
     <StBtnGroupWrap>
       {member.map((n) => {
         return (
-          <Button $color={n.color} $outline={"true"} $size={"lg"} key={uuidv4()}>
+          <Button
+            color={n.color}
+            outline={"true"}
+            size={"lg"}
+            active={n.name === selectMember}
+            onClick={() => {
+              onClick(n.name);
+            }}
+            key={uuidv4()}
+          >
             {n.name}
           </Button>
         );
