@@ -5,12 +5,12 @@ import Button from "components/ui/Button";
 import Container from "components/ui/Container";
 import member from "data/member";
 import SelectBox from "components/ui/SelectBox";
-import validateLetter from "utils/validation";
+import { validateLetter } from "utils/validation";
 import Form from "components/ui/Form";
 
 const memberNameList = member.map((n) => n.name);
 
-function HomeForm({ onCreateLetter, onChangeModalContent, onOpenModal }) {
+function HomeForm({ onCreateLetter, onChangeModalContent, onChangeModalType, onOpenModal }) {
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
   const [writedTo, setWritedTo] = useState(memberNameList[0]);
@@ -26,6 +26,7 @@ function HomeForm({ onCreateLetter, onChangeModalContent, onOpenModal }) {
       onCreateLetter(nickname, content, writedTo);
     } else {
       onChangeModalContent(validation);
+      onChangeModalType("warning");
       onOpenModal();
     }
     setNickname("");

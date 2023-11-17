@@ -57,4 +57,4 @@ function validateLetter(nickname, nicknameLimit, content, contentLimit) {
   }
 }
 
-export default validateLetter;
+export { validateText, validateLetter };

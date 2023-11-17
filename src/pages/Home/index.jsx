@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Hero from "components/Hero";
 import MemberBtnGroup from "./MemberBtnGroup";
 import LetterGroup from "./LetterGroup";
-import mockLetterDate from "data/mockLetterData";
 import HomeForm from "./HomeForm";
 import createLetterData from "utils/createLetterData";
 import Modal from "components/ui/Modal";
 
-function Home() {
+function Home({ letterData, setLetterData }) {
   const [selectMember, setSelectMember] = useState("하니");
-  const [letterData, setLetterData] = useState([]);
-  const [modalState, setModalState] = useState(false);
+  const [modalType, setModalType] = useState("default");
+  const [modalActive, setModalActive] = useState(false);
   const [modalContent, setModalContent] = useState("");
 
   const changeSelectMember = (member) => {
@@ -24,27 +23,43 @@ function Home() {
     setLetterData(copy);
   };
 
-  const changeModalContent = (str) => setModalContent(str);
-  const openModal = () => setModalState(true);
-  const closeModal = () => setModalState(false);
+  const onChangeModalType = (type) => {
+    const changeType = type === "warning" ? "warning" : "default";
+    setModalType(changeType);
+  };
 
-  useEffect(() => {
-    setLetterData(mockLetterDate);
-  }, []);
+  const onChangeModalContent = (str) => {
+    setModalContent(str);
+  };
+
+  const onOpenModal = () => {
+    setModalActive(true);
+  };
+
+  const onCloseModal = () => {
+    setModalActive(false);
+  };
+
+  const onSummitModal = (func = null) => {
+    if (func !== null) {
+      func();
+    }
+    setModalActive(false);
+  };
 
   return (
     <>
-      <Modal type={"waring"} modalState={modalState} onClose={closeModal}>
+      <Modal type={"waring"} $type={modalType} active={modalActive} onSummit={onSummitModal} onClose={onCloseModal}>
         {modalContent}
       </Modal>
-      <button onClick={openModal}>모달 열기</button>
       <Hero>
         <MemberBtnGroup selectMember={selectMember} onClick={changeSelectMember}></MemberBtnGroup>
       </Hero>
       <HomeForm
         onCreateLetter={createLetter}
-        onChangeModalContent={changeModalContent}
-        onOpenModal={openModal}
+        onChangeModalContent={onChangeModalContent}
+        onOpenModal={onOpenModal}
+        onChangeModalType={onChangeModalType}
       ></HomeForm>
       <LetterGroup letterData={letterData} selectMember={selectMember}></LetterGroup>
     </>

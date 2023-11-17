@@ -13,7 +13,7 @@ const StTextarea = styled.textarea`
   outline: none;
 `;
 
-function Textarea({ placeholder, onChange, color, value, maxLength, labelText }) {
+function Textarea({ placeholder, onChange, color, value, maxLength, labelText, readOnly }) {
   const id = useMemo(() => uuidv4(), []);
 
   return (
@@ -28,6 +28,7 @@ function Textarea({ placeholder, onChange, color, value, maxLength, labelText })
         id={id}
         autoComplete={"off"}
         rows={6}
+        readOnly={readOnly || false}
       />
     </div>
   );

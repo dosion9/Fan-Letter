@@ -15,7 +15,7 @@ const StDimmer = styled.div`
 `;
 
 const StModalWrap = styled.div`
-  border: 10px double ${(props) => (props?.$color ? theme.color[props.$color] : theme.color.black)};
+  border: 10px double ${(props) => (props?.color ? theme.color[props.color] : theme.color.black)};
   background-color: ${theme.color.white};
   width: 60%;
   margin: auto;
@@ -25,10 +25,10 @@ const StModalWrap = styled.div`
 
   .header {
     font-weight: bold;
-    background-color: ${(props) => (props?.$color ? theme.color[props.$color] : theme.color.white)};
+    background-color: ${(props) => (props?.color ? theme.color[props.color] : theme.color.white)};
     font-size: ${theme.fontSize.xl};
     padding: ${theme.spacing.lg} ${theme.spacing.lg};
-    color: ${(props) => (props?.$color === "white" ? theme.color[props.$color] : theme.color.white)};
+    color: ${(props) => (props?.color === "white" ? theme.color[props.color] : theme.color.white)};
   }
 
   .body {
@@ -48,24 +48,27 @@ const StModalWrap = styled.div`
 `;
 
 const modalType = {
-  waring: { header: "주의", color: "pink" },
-  alert: { header: "알림", color: "blue" }
+  warning: { text: "주의", color: "pink" },
+  default: { text: "알림", color: "blue" }
 };
 
-function Modal({ children, modalState, onClose, type }) {
-  const close = (e) => {
+function Modal({ children, $type, active, onClose, onSummit }) {
+  const handleClose = (e) => {
     e.target.dataset.modal !== "dimmer" ? e.preventDefault() : onClose();
   };
 
+  const handleSummit = () => {
+    onSummit();
+  };
   return (
     <>
-      {modalState ? (
-        <StDimmer data-modal="dimmer" onClick={close}>
-          <StModalWrap $color={modalType[type]?.color || "green"}>
-            <div className="header">{modalType?.[type].header || type}</div>
+      {active ? (
+        <StDimmer data-modal="dimmer" onClick={handleClose}>
+          <StModalWrap color={modalType[$type].color || "green"}>
+            <div className="header">{modalType[$type].text}</div>
             <div className="body">{children}</div>
             <div className="footer">
-              <Button outline={"true"} color={"blue"} onClick={close}>
+              <Button outline={"true"} color={"blue"} onClick={handleSummit}>
                 확인
               </Button>
               <Button outline={"true"} color={"pink"} onClick={onClose}>
