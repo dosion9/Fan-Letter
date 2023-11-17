@@ -4,18 +4,19 @@ import member from "data/member";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import theme from "style/Theme";
+import Container from "components/ui/Container";
 
-const StBtnGroupWrap = styled.div`
-  width: 100%;
+const StContainer = styled.div`
   display: flex;
   gap: ${theme.spacing.lg};
+  height: 100%;
   align-items: end;
   justify-content: center;
 `;
 
 function MemberBtnGroup({ selectMember, onClick }) {
   return (
-    <StBtnGroupWrap>
+    <StContainer>
       {member.map((n) => {
         return (
           <Button
@@ -32,7 +33,7 @@ function MemberBtnGroup({ selectMember, onClick }) {
           </Button>
         );
       })}
-    </StBtnGroupWrap>
+    </StContainer>
   );
 }
 

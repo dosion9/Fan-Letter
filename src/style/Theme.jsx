@@ -7,7 +7,8 @@ const color = {
   purple: "#6f42c1",
   yellow: "gold",
   waring: "#ff0000", // 잘못된 지정을 했을 때 나오는 색
-  shadow: "#252525a9"
+  shadow: "#252525a9",
+  lightBlue: "#c4dae2"
 };
 
 const fontSize = {

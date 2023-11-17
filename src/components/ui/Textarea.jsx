@@ -4,6 +4,12 @@ import styled from "styled-components";
 import Label from "components/ui/Label";
 import { v4 as uuidv4 } from "uuid";
 
+const StRow = styled.div`
+  display: flex;
+  align-items: start;
+  width: 100%;
+`;
+
 const StTextarea = styled.textarea`
   width: 100%;
   border: ${(props) => theme.border[props.color] || theme.border.black};
@@ -17,7 +23,7 @@ function Textarea({ placeholder, onChange, color, value, maxLength, labelText, r
   const id = useMemo(() => uuidv4(), []);
 
   return (
-    <div>
+    <StRow>
       {labelText ? <Label htmlFor={id}>{labelText}</Label> : null}
       <StTextarea
         placeholder={placeholder}
@@ -30,7 +36,7 @@ function Textarea({ placeholder, onChange, color, value, maxLength, labelText, r
         rows={6}
         readOnly={readOnly || false}
       />
-    </div>
+    </StRow>
   );
 }
 

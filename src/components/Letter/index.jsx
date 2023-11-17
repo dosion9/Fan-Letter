@@ -3,6 +3,7 @@ import UserImg from "components/letter/UserImg";
 import styled from "styled-components";
 import theme from "style/Theme";
 import { Link } from "react-router-dom";
+import { expressLetterDate } from "utils/changeDate";
 
 const StLink = styled(Link)`
   color: inherit;
@@ -62,7 +63,7 @@ function Letter({ letterData, color }) {
         <UserImg avatar={avatar} color={color}></UserImg>
         <Header>
           <p className="userName">{nickname || "undefined"}</p>
-          <span className="date">{createdAt || "undefined"}</span>
+          <span className="date">{expressLetterDate(createdAt) || "undefined"}</span>
         </Header>
         <Body>
           <p className="content">{content || "undefined"}</p>

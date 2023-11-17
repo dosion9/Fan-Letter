@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Letter from "components/letter";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
@@ -10,6 +10,9 @@ const StContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing.lg};
+  padding: ${theme.spacing.lg};
+  border: 10px double ${(props) => theme.color[props.color]};
+  border-radius: ${theme.border.borderRadius};
 `;
 
 function LetterGroup({ letterData, selectMember }) {

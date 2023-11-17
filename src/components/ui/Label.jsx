@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const StLabel = styled.label.attrs((props) => ({
-  htmlFor: props.htmlFor
-}))`
-  min-width: 10rem;
+const StLabel = styled.label`
+  min-width: 4rem;
   font-weight: bold;
 `;
 
