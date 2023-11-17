@@ -2,6 +2,12 @@ import React from "react";
 import UserImg from "components/letter/UserImg";
 import styled from "styled-components";
 import theme from "style/Theme";
+import { Link } from "react-router-dom";
+
+const StLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
 
 const Wrap = styled.section`
   width: 100%;
@@ -51,16 +57,18 @@ const Body = styled.div`
 function Letter({ letterData, color }) {
   const { nickname, avatar, content, createdAt } = { ...letterData };
   return (
-    <Wrap color={color}>
-      <UserImg avatar={avatar} color={color}></UserImg>
-      <Header>
-        <p className="userName">{nickname || "undefined"}</p>
-        <span className="date">{createdAt || "undefined"}</span>
-      </Header>
-      <Body>
-        <p className="content">{content || "undefined"}</p>
-      </Body>
-    </Wrap>
+    <StLink to={`/detail/${letterData.id}`}>
+      <Wrap color={color}>
+        <UserImg avatar={avatar} color={color}></UserImg>
+        <Header>
+          <p className="userName">{nickname || "undefined"}</p>
+          <span className="date">{createdAt || "undefined"}</span>
+        </Header>
+        <Body>
+          <p className="content">{content || "undefined"}</p>
+        </Body>
+      </Wrap>
+    </StLink>
   );
 }
 
