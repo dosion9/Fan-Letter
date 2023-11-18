@@ -10,7 +10,7 @@ const StFooter = styled.footer`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${theme.spacing.lg};
+  padding: ${theme.spacing.base};
   margin-top: ${theme.spacing.xl};
 `;
 

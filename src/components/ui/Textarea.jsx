@@ -14,7 +14,7 @@ const StTextarea = styled.textarea`
   width: 100%;
   border: ${(props) => theme.border[props.color] || theme.border.black};
   border-radius: ${theme.border.borderRadius};
-  padding: ${theme.spacing.base};
+  padding: ${theme.spacing.sm};
   resize: none;
   outline: none;
 `;

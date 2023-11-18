@@ -5,7 +5,7 @@ import theme from "style/Theme";
 const StButton = styled.button.attrs((props) => ({
   onClick: props?.onClick
 }))`
-  padding: ${theme.spacing.base} ${theme.spacing.xl};
+  padding: ${theme.spacing.sm} ${theme.spacing.xl};
   font-weight: bold;
   background-color: ${(props) => (!props.$outline || props.$active ? theme.color[props.color] : theme.color.white)};
   border: ${(props) => theme.border[props.color] || theme.border.waring};

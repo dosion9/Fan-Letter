@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-
+import pattern from "assets/img/pattern.png";
 const GlobalStyle = createGlobalStyle`
 
     * {
@@ -48,6 +48,11 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+body {
+	background-image: url(${pattern});
+	background-repeat: repeat;
 }
 
 `;

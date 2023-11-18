@@ -31,8 +31,8 @@ const border = {
 };
 
 const spacing = {
-  base: "0.5rem",
-  lg: "1rem",
+  sm: "0.5rem",
+  base: "1rem",
   xl: "2rem"
 };
 

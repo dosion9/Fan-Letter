@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const ImgWrap = styled.figure`
   position: absolute;
-  top: ${theme.spacing.lg};
-  left: ${theme.spacing.lg};
+  top: ${theme.spacing.base};
+  left: ${theme.spacing.base};
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;

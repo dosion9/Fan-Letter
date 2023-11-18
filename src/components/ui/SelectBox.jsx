@@ -13,7 +13,7 @@ const StRow = styled.div`
 const StSelect = styled.select`
   min-width: 10rem;
   width: 100%;
-  padding: ${theme.spacing.base};
+  padding: ${theme.spacing.sm};
   text-align: center;
   border: ${(props) => theme.border[props.color] || theme.border.black};
   border-radius: ${theme.border.borderRadius};
@@ -22,7 +22,7 @@ const StSelect = styled.select`
 `;
 
 const StOption = styled.option`
-  padding: ${theme.spacing.base};
+  padding: ${theme.spacing.sm};
 `;
 
 function SelectBox({ onChange, listData, value, labelText, color }) {

@@ -9,7 +9,7 @@ const FormWrap = styled.form.attrs(() => ({
   border-radius: ${theme.border.borderRadius};
   padding: ${theme.spacing.base};
   display: grid;
-  gap: ${theme.spacing.lg};
+  gap: ${theme.spacing.base};
 `;
 
 function Form({ children, onSubmit, color }) {

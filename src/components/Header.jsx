@@ -9,7 +9,7 @@ const StHeader = styled.header`
   color: ${theme.color.white};
   display: flex;
   align-items: center;
-  padding: ${theme.spacing.lg};
+  padding: ${theme.spacing.base};
 `;
 
 function Header() {

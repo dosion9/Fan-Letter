@@ -8,7 +8,7 @@ import Container from "components/ui/Container";
 
 const StContainer = styled.div`
   display: flex;
-  gap: ${theme.spacing.lg};
+  gap: ${theme.spacing.base};
   height: 100%;
   align-items: end;
   justify-content: center;

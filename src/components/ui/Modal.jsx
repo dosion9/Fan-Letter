@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import theme from "style/Theme";
 import Button from "./Button";
+import useModal from "hooks/useModal";
 
 const StDimmer = styled.div`
   width: 100vw;
@@ -27,22 +28,22 @@ const StModalWrap = styled.div`
     font-weight: bold;
     background-color: ${(props) => (props?.color ? theme.color[props.color] : theme.color.white)};
     font-size: ${theme.fontSize.xl};
-    padding: ${theme.spacing.lg} ${theme.spacing.lg};
+    padding: ${theme.spacing.base} ${theme.spacing.base};
     color: ${(props) => (props?.color === "white" ? theme.color[props.color] : theme.color.white)};
   }
 
   .body {
-    padding: ${theme.spacing.lg};
+    padding: ${theme.spacing.base};
     display: flex;
     align-items: center;
   }
 
   .footer {
     text-align: end;
-    padding: ${theme.spacing.base};
+    padding: ${theme.spacing.sm};
 
     * {
-      margin-left: ${theme.spacing.base};
+      margin-left: ${theme.spacing.sm};
     }
   }
 `;
@@ -52,26 +53,35 @@ const modalType = {
   default: { text: "알림", color: "blue" }
 };
 
-function Modal({ children, $type, active, onClose, onSummit }) {
-  const handleClose = (e) => {
-    e.target.dataset.modal !== "dimmer" ? e.preventDefault() : onClose();
+function Modal({ modalState, setModalState }) {
+  const { closeModal } = useModal(setModalState);
+  const dimmer = useRef();
+  const onClose = (e) => {
+    if (e.target.onclick) {
+      closeModal();
+    }
+    e.preventDefault();
   };
 
-  const handleSummit = () => {
-    onSummit();
+  const onSummit = () => {
+    console.log("실행");
+    modalState.onSummit && modalState?.onSummit();
   };
   return (
     <>
-      {active ? (
-        <StDimmer data-modal="dimmer" onClick={handleClose}>
-          <StModalWrap color={modalType[$type].color || "green"}>
-            <div className="header">{modalType[$type].text}</div>
-            <div className="body">{children}</div>
+      {modalState && modalState?.active ? (
+        <StDimmer onClick={(e) => onClose(e)} ref={dimmer}>
+          <StModalWrap color={modalType[modalState.type].color || "green"}>
+            <div className="header">{modalType[modalState.type].text}</div>
+            <div className="body">{modalState.content}</div>
             <div className="footer">
-              <Button outline={"true"} color={"blue"} onClick={handleSummit}>
-                확인
-              </Button>
-              <Button outline={"true"} color={"pink"} onClick={onClose}>
+              {modalState?.onSummit && (
+                <Button outline={"true"} color={"blue"} onClick={onSummit}>
+                  확인
+                </Button>
+              )}
+
+              <Button outline={"true"} color={"pink"} onClick={(e) => onClose(e)}>
                 취소
               </Button>
             </div>

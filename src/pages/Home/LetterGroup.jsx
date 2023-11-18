@@ -9,8 +9,8 @@ import Container from "components/ui/Container";
 const StContainer = styled(Container)`
   display: flex;
   flex-direction: column;
-  gap: ${theme.spacing.lg};
-  padding: ${theme.spacing.lg};
+  gap: ${theme.spacing.base};
+  padding: ${theme.spacing.base};
   border: 10px double ${(props) => theme.color[props.color]};
   border-radius: ${theme.border.borderRadius};
 `;

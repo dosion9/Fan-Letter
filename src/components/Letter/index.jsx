@@ -17,8 +17,8 @@ const Wrap = styled.section`
   display: flex;
   flex-direction: column;
   background-color: ${theme.color.white};
-  padding: ${theme.spacing.lg};
-  padding-left: calc(${theme.spacing.lg}* 2 + 3.5rem);
+  padding: ${theme.spacing.base};
+  padding-left: calc(${theme.spacing.base}* 2 + 3.5rem);
   position: relative;
   cursor: pointer;
   transition: ${theme.transition.base};
@@ -31,8 +31,8 @@ const Header = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  gap: ${theme.spacing.lg};
-  margin-bottom: ${theme.spacing.lg};
+  gap: ${theme.spacing.base};
+  margin-bottom: ${theme.spacing.base};
 
   .userName {
     font-size: ${theme.fontSize.lg};

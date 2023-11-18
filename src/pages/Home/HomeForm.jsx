@@ -9,10 +9,11 @@ import { validateLetter } from "utils/validation";
 import Form from "components/ui/Form";
 import styled from "styled-components";
 import theme from "style/Theme";
+import useModal from "hooks/useModal";
 
 const Strow = styled.div`
   display: flex;
-  gap: ${theme.spacing.lg};
+  gap: ${theme.spacing.base};
 
   &.right {
     justify-content: end;
@@ -21,7 +22,7 @@ const Strow = styled.div`
 
 const memberNameList = member.map((n) => n.name);
 
-function HomeForm({ onCreateLetter, onChangeModalContent, onChangeModalType, onOpenModal }) {
+function HomeForm({ onCreateLetter, setModalState }) {
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
   const [writedTo, setWritedTo] = useState(memberNameList[0]);
@@ -29,16 +30,17 @@ function HomeForm({ onCreateLetter, onChangeModalContent, onChangeModalType, onO
   const handleChangeName = (e) => setNickname(e.target.value);
   const handleChangeContent = (e) => setContent(e.target.value);
   const handleChangeWritedTo = (e) => setWritedTo(e.target.value);
-
   const handleCreateLetter = (e, nickname, content, writedTo) => {
     const validation = validateLetter(nickname, 10, content, 100);
 
     if (validation === true) {
       onCreateLetter(nickname, content, writedTo);
     } else {
-      onChangeModalContent(validation);
-      onChangeModalType("warning");
-      onOpenModal();
+      changeModalState({
+        content: validation,
+        type: "warning"
+      });
+      openModal();
     }
     setNickname("");
     setContent("");
@@ -46,6 +48,7 @@ function HomeForm({ onCreateLetter, onChangeModalContent, onChangeModalType, onO
     e.preventDefault();
   };
 
+  const { changeModalState, openModal } = useModal(setModalState);
   return (
     <Container>
       <Form color="blue" onSubmit={(e) => handleCreateLetter(e, nickname, content, writedTo)}>
