@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import UserImg from "components/letter/UserImg";
 import Button from "components/ui/Button";
 import Textarea from "components/ui/Textarea";
 import Container from "components/layout/Container";
-import { useNavigate, useParams } from "react-router-dom";
+import { changeDate } from "utils/changeDate";
 import { validateText } from "utils/validation";
 import useModal from "hooks/useModal";
+import useLetter from "hooks/useLetter";
+import { LetterContext } from "context/letterContext";
+import { ModalContext } from "context/modalContext";
 import styled from "styled-components";
 import theme from "style/Theme";
-import { changeDate } from "utils/changeDate";
-import useLetter from "hooks/useLetter";
 
 const StRow = styled.div`
-  font-size: ${theme.fontSize.lg};
+  font-size: ${(props) => props.theme.fontSize.lg};
   margin-bottom: ${theme.spacing.base};
   display: flex;
 
@@ -30,7 +32,9 @@ const StBtnGroup = styled.div`
   justify-content: center;
 `;
 
-function Detail({ letterData, setLetterData, setModalState }) {
+function Detail() {
+  const { letterData, setLetterData } = useContext(LetterContext);
+  const { setModalState } = useContext(ModalContext);
   const param = useParams();
   const navigate = useNavigate();
   const [letter, setLetter] = useState({});
@@ -41,11 +45,11 @@ function Detail({ letterData, setLetterData, setModalState }) {
   const { changeModalState, openModal } = useModal(setModalState);
   const { searchLetter, updateLetter, deleteLetter } = useLetter(letterData, setLetterData);
   const activeEditMode = () => setEditMode(true);
-  const changeContent = (e) => setContent(e.target.value);
   const inactiveEditMode = () => {
     setContent(letter.content);
     setEditMode(false);
   };
+  const changeContent = (e) => setContent(e.target.value);
 
   const onChageLetter = () => {
     const checkChange = letter.content !== content;
@@ -58,7 +62,7 @@ function Detail({ letterData, setLetterData, setModalState }) {
       openModal();
     } else {
       changeModalState({ content: "변경된 내용이 없습니다." });
-      openModal(true);
+      openModal();
     }
   };
 

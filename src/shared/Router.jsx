@@ -3,19 +3,13 @@ import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import Layout from "./Layout";
 
-const Router = ({ letterData, setLetterData, setModalState }) => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route
-            path="/"
-            element={<Home letterData={letterData} setLetterData={setLetterData} setModalState={setModalState} />}
-          />
-          <Route
-            path="detail/:id"
-            element={<Detail letterData={letterData} setLetterData={setLetterData} setModalState={setModalState} />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="detail/:id" element={<Detail />} />
         </Routes>
       </Layout>
     </BrowserRouter>

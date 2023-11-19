@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Letter from "components/letter";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import theme from "style/Theme";
 import member from "data/member";
+import { LetterContext } from "context/letterContext";
 
 const StWrap = styled.div`
   display: flex;
@@ -16,7 +17,8 @@ const StRow = styled.p`
   text-align: center;
 `;
 
-function LetterGroup({ letterData, selectMember }) {
+function LetterGroup({ selectMember }) {
+  const { letterData } = useContext(LetterContext);
   return (
     <StWrap>
       {letterData

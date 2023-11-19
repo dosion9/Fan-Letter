@@ -7,6 +7,11 @@ const warning = {
   errorCuresWord: "제한된 문자가 사용되었습니다."
 };
 
+const limitLength = {
+  nickname: 10,
+  content: 300
+};
+
 function checkLength(str, limitLength) {
   return str.length <= limitLength ? true : false;
 }
@@ -42,9 +47,9 @@ function validateText(str, limitLength) {
   return true;
 }
 
-function validateLetter(nickname, nicknameLimit, content, contentLimit) {
-  const checkNickname = validateText(nickname, nicknameLimit);
-  const checkContent = validateText(content, contentLimit);
+function validateLetter(nickname, content) {
+  const checkNickname = validateText(nickname, limitLength.nickname);
+  const checkContent = validateText(content, limitLength.content);
 
   if (checkNickname !== true) {
     return `닉네임에서 ${checkNickname}`;
