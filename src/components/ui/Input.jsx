@@ -4,7 +4,7 @@ import theme from "style/Theme";
 import Label from "components/ui/Label";
 import { v4 as uuidv4 } from "uuid";
 
-const StRow = styled.div`
+const StWrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -21,7 +21,7 @@ const StInput = styled.input`
 function Input({ type, placeholder, value, onChange, color, labelText, maxLength }) {
   const id = useMemo(() => uuidv4(), []);
   return (
-    <StRow>
+    <StWrap>
       {labelText ? <Label htmlFor={id}>{labelText}</Label> : null}
       <StInput
         type={type || "text"}
@@ -32,7 +32,7 @@ function Input({ type, placeholder, value, onChange, color, labelText, maxLength
         id={id}
         maxLength={maxLength}
       />
-    </StRow>
+    </StWrap>
   );
 }
 

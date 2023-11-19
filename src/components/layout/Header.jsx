@@ -9,11 +9,20 @@ const StHeader = styled.header`
   color: ${theme.color.white};
   display: flex;
   align-items: center;
-  padding: ${theme.spacing.base};
+`;
+
+const StContent = styled.div`
+  width: 90%;
+  max-width: 960px;
+  margin: auto;
 `;
 
 function Header() {
-  return <StHeader>Header</StHeader>;
+  return (
+    <StHeader>
+      <StContent>Header</StContent>
+    </StHeader>
+  );
 }
 
 export default Header;

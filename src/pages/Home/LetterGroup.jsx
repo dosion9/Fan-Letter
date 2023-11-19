@@ -4,28 +4,31 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import theme from "style/Theme";
 import member from "data/member";
-import Container from "components/ui/Container";
 
-const StContainer = styled(Container)`
+const StWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing.base};
-  padding: ${theme.spacing.base};
-  border: 10px double ${(props) => theme.color[props.color]};
-  border-radius: ${theme.border.borderRadius};
+`;
+
+const StRow = styled.p`
+  padding: ${theme.spacing.xl} 0;
+  text-align: center;
 `;
 
 function LetterGroup({ letterData, selectMember }) {
   return (
-    <StContainer>
+    <StWrap>
       {letterData
         .filter((n) => n.writedTo === selectMember)
         .map((n) => {
           const color = member.find((m) => m.name === n.writedTo).color;
           return <Letter letterData={n} color={color} key={uuidv4()}></Letter>;
         })}
-      {letterData.filter((n) => n.writedTo === selectMember).length === 0 ? <p>ㅠㅠ 편지 써줘요</p> : null}
-    </StContainer>
+      {letterData.filter((n) => n.writedTo === selectMember).length === 0 ? (
+        <StRow>😥 등록된 팬레터가 없습니다 😥</StRow>
+      ) : null}
+    </StWrap>
   );
 }
 

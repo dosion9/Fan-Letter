@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import Hero from "components/Hero";
+import Hero from "components/ui/Hero";
 import MemberBtnGroup from "./MemberBtnGroup";
 import LetterGroup from "./LetterGroup";
 import HomeForm from "./HomeForm";
-import createLetterData from "utils/createLetterData";
+import { createLetterData } from "utils/letterData";
+import Container from "components/layout/Container";
 
 function Home({ letterData, setLetterData, setModalState }) {
   const [selectMember, setSelectMember] = useState("하니");
@@ -21,11 +22,14 @@ function Home({ letterData, setLetterData, setModalState }) {
 
   return (
     <>
-      <Hero>
+      <Hero />
+      <Container color={"blue"} title={"팬레터 작성"}>
+        <HomeForm onCreateLetter={createLetter} setModalState={setModalState}></HomeForm>
+      </Container>
+      <Container color={"blue"} title={"팬레터 목록"}>
         <MemberBtnGroup selectMember={selectMember} onClick={changeSelectMember}></MemberBtnGroup>
-      </Hero>
-      <HomeForm onCreateLetter={createLetter} setModalState={setModalState}></HomeForm>
-      <LetterGroup letterData={letterData} selectMember={selectMember}></LetterGroup>
+        <LetterGroup letterData={letterData} selectMember={selectMember}></LetterGroup>
+      </Container>
     </>
   );
 }

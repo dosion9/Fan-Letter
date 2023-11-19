@@ -7,9 +7,9 @@ const StButton = styled.button.attrs((props) => ({
 }))`
   padding: ${theme.spacing.sm} ${theme.spacing.xl};
   font-weight: bold;
-  background-color: ${(props) => (!props.$outline || props.$active ? theme.color[props.color] : theme.color.white)};
+  background-color: ${(props) => (props.$active ? theme.color[props.color] : theme.color.white)};
   border: ${(props) => theme.border[props.color] || theme.border.waring};
-  color: ${(props) => (!props.$outline || props.$active ? theme.color.white : theme.color[props.color])};
+  color: ${(props) => (props.$active ? theme.color.white : theme.color[props.color])};
   border-radius: ${theme.border.borderRadius};
   cursor: pointer;
   transition: ${theme.transition.base};
@@ -17,14 +17,13 @@ const StButton = styled.button.attrs((props) => ({
 
   &:hover {
     color: ${theme.color.white};
-    background-color: ${(props) => (props.$outline ? theme.color[props.color] : null)};
-    opacity: 0.7;
+    background-color: ${(props) => theme.color[props.color]};
   }
 `;
 
-function Button({ children, color, size, outline, active, onClick }) {
+function Button({ children, color, size, active, onClick }) {
   return (
-    <StButton color={color} size={size} $outline={outline} $active={active} onClick={onClick}>
+    <StButton color={color} size={size} $active={active} onClick={onClick}>
       {children}
     </StButton>
   );

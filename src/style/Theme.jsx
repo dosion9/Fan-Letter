@@ -8,7 +8,8 @@ const color = {
   yellow: "gold",
   waring: "#ff0000", // 잘못된 지정을 했을 때 나오는 색
   shadow: "#252525a9",
-  lightBlue: "#c4dae2"
+  lightBlue: "#c4dae2",
+  base: "skyblue"
 };
 
 const fontSize = {

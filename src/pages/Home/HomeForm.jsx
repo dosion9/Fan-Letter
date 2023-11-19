@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import Button from "components/ui/Button";
-import Container from "components/ui/Container";
 import member from "data/member";
 import SelectBox from "components/ui/SelectBox";
 import { validateLetter } from "utils/validation";
@@ -50,7 +49,7 @@ function HomeForm({ onCreateLetter, setModalState }) {
 
   const { changeModalState, openModal } = useModal(setModalState);
   return (
-    <Container>
+    <>
       <Form color="blue" onSubmit={(e) => handleCreateLetter(e, nickname, content, writedTo)}>
         <Strow>
           <Input
@@ -85,7 +84,7 @@ function HomeForm({ onCreateLetter, setModalState }) {
           <Button color={"blue"}>등록하기</Button>
         </Strow>
       </Form>
-    </Container>
+    </>
   );
 }
 

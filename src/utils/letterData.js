@@ -13,4 +13,4 @@ function createLetterData(nickname, content, writedTo) {
   return letter;
 }
 
-export default createLetterData;
+export { createLetterData };

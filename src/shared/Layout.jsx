@@ -1,12 +1,25 @@
 import React from "react";
-import Header from "components/Header";
-import Footer from "components/Footer";
+import Header from "components/layout/Header";
+import Footer from "components/layout/Footer";
+import theme from "style/Theme";
+import styled from "styled-components";
+
+const StMain = styled.main`
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+  background-color: ${theme.color.white};
+  padding: ${theme.spacing.xl};
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing.xl};
+`;
 
 function Layout({ children }) {
   return (
     <>
       <Header />
-      <main>{children}</main>;
+      <StMain>{children}</StMain>
       <Footer />
     </>
   );

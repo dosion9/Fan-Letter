@@ -4,18 +4,26 @@ import styled from "styled-components";
 
 const StFooter = styled.footer`
   width: 100%;
-  height: 8rem;
+  min-height: 8rem;
   background-color: ${theme.color.blue};
   color: ${theme.color.white};
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: ${theme.spacing.base};
-  margin-top: ${theme.spacing.xl};
+`;
+
+const StContent = styled.div`
+  width: 90%;
+  max-width: 960px;
+  margin: auto;
+  text-align: center;
 `;
 
 function Footer() {
-  return <StFooter>Footer</StFooter>;
+  return (
+    <StFooter>
+      <StContent>Footer</StContent>
+    </StFooter>
+  );
 }
 
 export default Footer;

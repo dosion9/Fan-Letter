@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import memberImg from "assets/img/member2.jpg";
-import Container from "./ui/Container";
-const StHeroWrap = styled.section`
+import memberImg from "assets/img/member1.jpg";
+
+const StHero = styled.section`
   width: 100%;
   height: 30rem;
-  background-color: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,14 +13,17 @@ const StHeroWrap = styled.section`
   background-size: cover;
 `;
 
-const StHeroContent = styled(Container)``;
+const StHeroContent = styled.div`
+  width: 80%;
+  height: 70%;
+`;
 
 function Hero({ children }) {
   return (
     // 주석 : memberImg 변경할 것
-    <StHeroWrap $bgImg={memberImg}>
+    <StHero $bgImg={memberImg}>
       <StHeroContent>{children}</StHeroContent>
-    </StHeroWrap>
+    </StHero>
   );
 }
 

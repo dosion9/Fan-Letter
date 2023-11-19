@@ -55,6 +55,7 @@ body {
 	background-repeat: repeat;
 }
 
+
 `;
 
 export default GlobalStyle;

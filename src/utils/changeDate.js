@@ -6,7 +6,7 @@ const translateUnit = {
   min: "분"
 };
 
-function chageDate(time) {
+function changeDate(time) {
   const dataDate = new Date(time);
 
   const dateResult = {
@@ -26,8 +26,8 @@ function chageDate(time) {
  * @returns 차이가 나는 시간을 반환 ex) 1년 전, 5분 전
  */
 function expressLetterDate(time) {
-  const dateObj = chageDate(time);
-  const currentDate = chageDate(new Date());
+  const dateObj = changeDate(time);
+  const currentDate = changeDate(new Date());
 
   for (let key in translateUnit) {
     if (dateObj[key] !== currentDate[key]) {
@@ -39,7 +39,4 @@ function expressLetterDate(time) {
   return "방금전";
 }
 
-let test = new Date();
-console.log(expressLetterDate(test));
-
-export { expressLetterDate };
+export { changeDate, expressLetterDate };

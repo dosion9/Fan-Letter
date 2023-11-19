@@ -10,9 +10,9 @@ const StLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Wrap = styled.section`
+const StLetter = styled.div`
   width: 100%;
-  border: 10px double ${(props) => theme?.color[props.color] || theme.color.black};
+  border: ${(props) => theme.border[props.color] || theme.border.black};
   border-radius: ${theme.border.borderRadius};
   display: flex;
   flex-direction: column;
@@ -27,12 +27,16 @@ const Wrap = styled.section`
   }
 `;
 
-const Header = styled.div`
-  position: relative;
+const StBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing.base};
+`;
+
+const StLetterTitle = styled.div`
   display: flex;
   align-items: center;
-  gap: ${theme.spacing.base};
-  margin-bottom: ${theme.spacing.base};
+  justify-content: space-between;
 
   .userName {
     font-size: ${theme.fontSize.lg};
@@ -46,7 +50,7 @@ const Header = styled.div`
   }
 `;
 
-const Body = styled.div`
+const StLetterContent = styled.div`
   .content {
     font-size: ${theme.fontSize.base};
     text-overflow: ellipsis;
@@ -59,16 +63,18 @@ function Letter({ letterData, color }) {
   const { nickname, avatar, content, createdAt } = { ...letterData };
   return (
     <StLink to={`/detail/${letterData.id}`}>
-      <Wrap color={color}>
+      <StLetter color={color}>
         <UserImg avatar={avatar} color={color}></UserImg>
-        <Header>
-          <p className="userName">{nickname || "undefined"}</p>
-          <span className="date">{expressLetterDate(createdAt) || "undefined"}</span>
-        </Header>
-        <Body>
-          <p className="content">{content || "undefined"}</p>
-        </Body>
-      </Wrap>
+        <StBody>
+          <StLetterTitle>
+            <p className="userName">{nickname || "undefined"}</p>
+            <span className="date">{expressLetterDate(createdAt) || "undefined"}</span>
+          </StLetterTitle>
+          <StLetterContent>
+            <p className="content">{content || "undefined"}</p>
+          </StLetterContent>
+        </StBody>
+      </StLetter>
     </StLink>
   );
 }
