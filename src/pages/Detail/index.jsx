@@ -13,6 +13,10 @@ import { ModalContext } from "context/modalContext";
 import styled from "styled-components";
 import theme from "style/Theme";
 
+const StUserImg = styled.div`
+  float: right;
+`;
+
 const StRow = styled.div`
   font-size: ${(props) => props.theme.fontSize.lg};
   margin-bottom: ${theme.spacing.base};
@@ -43,7 +47,7 @@ function Detail() {
 
   const letterDate = changeDate(letter.createdAt);
   const { changeModalState, openModal } = useModal(setModalState);
-  const { searchLetter, updateLetter, deleteLetter } = useLetter(letterData, setLetterData);
+  const { selectLetter, updateLetter, deleteLetter } = useLetter(letterData, setLetterData);
   const activeEditMode = () => setEditMode(true);
   const inactiveEditMode = () => {
     setContent(letter.content);
@@ -79,14 +83,20 @@ function Detail() {
   };
 
   useEffect(() => {
-    const letter = searchLetter(param?.id)[0];
-    setLetter(letter);
-    setContent(letter.content);
+    const letter = selectLetter(param?.id)[0];
+    if (letter !== undefined) {
+      setLetter(letter);
+      setContent(letter.content);
+    } else {
+      navigate("*");
+    }
   }, [param?.id]);
 
   return (
     <Container title={"팬레터 수정"}>
-      <UserImg color="blue" avatar={letter.avatar}></UserImg>
+      <StUserImg>
+        <UserImg color="blue" avatar={letter.avatar}></UserImg>
+      </StUserImg>
       <StRow>
         <b>작성자</b>
         {letter.nickname}

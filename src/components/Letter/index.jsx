@@ -12,14 +12,12 @@ const StLink = styled(Link)`
 
 const StLetter = styled.div`
   width: 100%;
+  align-items: center;
   border: ${(props) => theme.border[props.color] || theme.border.black};
   border-radius: ${theme.border.borderRadius};
   display: flex;
-  flex-direction: column;
   background-color: ${theme.color.white};
   padding: ${theme.spacing.base};
-  padding-left: calc(${theme.spacing.base}* 2 + 3.5rem);
-  position: relative;
   cursor: pointer;
   transition: ${theme.transition.base};
   &:hover {
@@ -28,9 +26,12 @@ const StLetter = styled.div`
 `;
 
 const StBody = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: ${theme.spacing.base};
   gap: ${theme.spacing.base};
+  overflow: hidden;
 `;
 
 const StLetterTitle = styled.div`
@@ -56,6 +57,7 @@ const StLetterContent = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    padding: ${theme.spacing.sm} 0;
   }
 `;
 

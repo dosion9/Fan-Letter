@@ -7,6 +7,7 @@ import styled from "styled-components";
 const StMain = styled.main`
   width: 100%;
   max-width: 960px;
+  min-height: 100vh;
   margin: auto;
   background-color: ${theme.color.white};
   padding: ${theme.spacing.xl};

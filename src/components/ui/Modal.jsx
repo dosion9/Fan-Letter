@@ -64,7 +64,6 @@ function Modal({ modalState, setModalState }) {
   };
 
   const onSummit = () => {
-    console.log("실행");
     modalState.onSummit && modalState?.onSummit();
   };
   return (

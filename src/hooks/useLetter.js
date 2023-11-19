@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import userImg from "assets/img/userImg.png";
 
 const useLetter = (state, setState) => {
   /**
@@ -12,27 +13,25 @@ const useLetter = (state, setState) => {
    */
   const createLetter = (obj) => {
     const { nickname, content, writedTo } = obj;
-    setState((prev) => [
-      ...prev,
-      {
-        createdAt: new Date().toISOString(),
-        nickname,
-        avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/298.jpg",
-        content,
-        writedTo,
-        id: uuidv4()
-      }
-    ]);
+    const letter = {
+      createdAt: new Date().toISOString(),
+      nickname,
+      avatar: userImg,
+      content,
+      writedTo,
+      id: uuidv4()
+    };
+    setState((prev) => [...prev, letter]);
   };
 
   /**
-   * @CRUD Search
-   * @function searchLetter 팬레터 검색 기능
+   * @CRUD Read
+   * @function selectLetter 팬레터 검색 기능
    * @description 팬레터 id 또는 맴버 이름이 일치하는 팬레터를 가져온다.
    * @param {string} info - 팬레터 id || 맴버 이름
    * @returns {Array} 일치하는 팬레터들
    */
-  const searchLetter = (info) => {
+  const selectLetter = (info) => {
     return state.filter((n) => n.wriedTo === info || n.id === info);
   };
 
@@ -58,7 +57,16 @@ const useLetter = (state, setState) => {
     setState((prev) => prev.filter((n) => n.id !== id));
   };
 
-  return { searchLetter, updateLetter, createLetter, deleteLetter };
+  /**
+   * @CRUD Update
+   * @function setLocalLetter 로컬스토리지 팬레터 저장 기능
+   * @description
+   */
+  const setLocalLetter = () => {
+    localStorage.setItem("letter", JSON.stringify(state));
+  };
+
+  return { selectLetter, updateLetter, createLetter, deleteLetter, setLocalLetter };
 };
 
 export default useLetter;

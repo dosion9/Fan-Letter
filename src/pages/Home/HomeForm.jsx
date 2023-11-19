@@ -33,7 +33,6 @@ function HomeForm() {
   const { createLetter } = useLetter(letterData, setLetterData);
   const { changeModalState, openModal } = useModal(setModalState);
   const onChange = (e, setState) => setState(e.target.value);
-
   const handleCreateLetter = (e) => {
     const validation = validateLetter(nickname, content);
     if (validation === true) {

@@ -3,9 +3,7 @@ import theme from "style/Theme";
 import styled from "styled-components";
 
 const ImgWrap = styled.figure`
-  position: absolute;
-  top: ${theme.spacing.base};
-  left: ${theme.spacing.base};
+  flex-shrink: 0;
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
