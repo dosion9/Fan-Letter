@@ -2,7 +2,7 @@ import React from "react";
 import theme from "style/Theme";
 import styled from "styled-components";
 import userImg from "assets/img/userImg.png";
-const ImgWrap = styled.figure`
+const ImgWrap = styled.div`
   flex-shrink: 0;
   width: 3.5rem;
   height: 3.5rem;
@@ -20,7 +20,7 @@ function Avatar({ avatar, color }) {
   const currentAvatar = avatar[0] === "h" ? avatar : userImg;
   return (
     <ImgWrap color={color}>
-      <Img src={currentAvatar}></Img>
+      <Img src={currentAvatar} />
     </ImgWrap>
   );
 }
