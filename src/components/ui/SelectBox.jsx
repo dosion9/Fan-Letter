@@ -25,7 +25,6 @@ const StOption = styled.option`
 `;
 
 function SelectBox({ onChange, listData, value, labelText, color }) {
-  const key = useMemo(() => uuidv4(), []);
   const id = useMemo(() => uuidv4(), []);
   return (
     <StWrap>
@@ -33,7 +32,7 @@ function SelectBox({ onChange, listData, value, labelText, color }) {
       <StSelect onChange={onChange} id={id} value={value} color={color}>
         {listData.map((n, i) => {
           return (
-            <StOption key={`${key} - ${i}`} value={n}>
+            <StOption key={`${id} - ${i}`} value={n}>
               {n}
             </StOption>
           );
