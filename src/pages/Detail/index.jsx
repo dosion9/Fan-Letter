@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import UserImg from "components/letter/UserImg";
+import Avatar from "components/letter/Avatar";
 import Button from "components/ui/Button";
 import Textarea from "components/ui/Textarea";
 import Container from "components/layout/Container";
@@ -61,7 +61,6 @@ function Detail() {
       navigate("/");
     } else if (checkValidation !== true) {
       dispatch(updateModal({ content: checkValidation }));
-      dispatch(openModal());
     } else {
       dispatch(updateModal({ content: "변경된 내용이 없습니다." }));
       dispatch(openModal());
@@ -98,7 +97,7 @@ function Detail() {
   return (
     <Container title={"팬레터 수정"}>
       <StUserImg>
-        <UserImg color="blue" avatar={letter.avatar}></UserImg>
+        <Avatar color="blue" avatar={letter.avatar}></Avatar>
       </StUserImg>
       <StRow>
         <b>작성자</b>

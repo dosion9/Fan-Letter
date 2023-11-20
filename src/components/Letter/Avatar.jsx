@@ -18,7 +18,7 @@ const Img = styled.img.attrs((props) => ({
   height: 100%;
 `;
 
-function UserImg({ avatar, color }) {
+function Avatar({ avatar, color }) {
   return (
     <ImgWrap color={color}>
       <Img $avatar={avatar}></Img>
@@ -26,4 +26,4 @@ function UserImg({ avatar, color }) {
   );
 }
 
-export default UserImg;
+export default Avatar;

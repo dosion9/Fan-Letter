@@ -1,5 +1,5 @@
 import React from "react";
-import UserImg from "components/letter/UserImg";
+import Avatar from "components/letter/Avatar";
 import styled from "styled-components";
 import theme from "style/Theme";
 import { Link } from "react-router-dom";
@@ -66,7 +66,7 @@ function Letter({ letterData, color }) {
   return (
     <StLink to={`/detail/${id}`}>
       <StLetter color={color}>
-        <UserImg avatar={avatar} color={color}></UserImg>
+        <Avatar avatar={avatar} color={color}></Avatar>
         <StBody>
           <StLetterTitle>
             <p className="userName">{nickname || "undefined"}</p>
