@@ -3,7 +3,6 @@ import Hero from "components/ui/Hero";
 import MemberBtnGroup from "./MemberBtnGroup";
 import LetterGroup from "./LetterGroup";
 import HomeForm from "./HomeForm";
-// import { createLetterData } from "utils/letterData";
 import Container from "components/layout/Container";
 function Home() {
   const [selectMember, setSelectMember] = useState("하니");

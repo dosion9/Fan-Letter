@@ -1,17 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Input from "components/ui/Input";
 import Textarea from "components/ui/Textarea";
 import Button from "components/ui/Button";
 import SelectBox from "components/ui/SelectBox";
 import Form from "components/ui/Form";
-import useModal from "hooks/useModal";
-import useLetter from "hooks/useLetter";
-import { LetterContext } from "context/letterContext";
-import { ModalContext } from "context/modalContext";
 import member from "data/member";
 import { validateLetter } from "utils/validation";
 import styled from "styled-components";
 import theme from "style/Theme";
+import { useDispatch } from "react-redux";
+import { createLetter } from "redux/modules/letters";
+import { updateModal, openModal } from "redux/modules/modal";
 
 const Strow = styled.div`
   display: flex;
@@ -25,27 +24,26 @@ const Strow = styled.div`
 const memberNameList = member.map((n) => n.name);
 
 function HomeForm() {
+  const dispatch = useDispatch();
   const [nickname, setNickname] = useState("");
   const [content, setContent] = useState("");
   const [writedTo, setWritedTo] = useState(memberNameList[0]);
-  const { letterData, setLetterData } = useContext(LetterContext);
-  const { setModalState } = useContext(ModalContext);
-  const { createLetter } = useLetter(letterData, setLetterData);
-  const { changeModalState, openModal } = useModal(setModalState);
   const onChange = (e, setState) => setState(e.target.value);
   const handleCreateLetter = (e) => {
     const validation = validateLetter(nickname, content);
     if (validation === true) {
-      createLetter({ nickname, content, writedTo });
+      dispatch(createLetter({ nickname, content, writedTo }));
       setNickname("");
       setContent("");
       setWritedTo(memberNameList[0]);
     } else {
-      changeModalState({
-        content: validation,
-        type: "warning"
-      });
-      openModal();
+      dispatch(
+        updateModal({
+          content: validation,
+          type: "warning"
+        })
+      );
+      dispatch(openModal());
     }
     e.preventDefault();
   };

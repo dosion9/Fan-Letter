@@ -62,9 +62,9 @@ const StLetterContent = styled.div`
 `;
 
 function Letter({ letterData, color }) {
-  const { nickname, avatar, content, createdAt } = { ...letterData };
+  const { nickname, avatar, content, createdAt, id } = letterData;
   return (
-    <StLink to={`/detail/${letterData.id}`}>
+    <StLink to={`/detail/${id}`}>
       <StLetter color={color}>
         <UserImg avatar={avatar} color={color}></UserImg>
         <StBody>

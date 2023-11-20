@@ -2,7 +2,8 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import theme from "style/Theme";
 import Button from "./Button";
-import useModal from "hooks/useModal";
+import { updateModal, openModal, closeModal } from "redux/modules/modal";
+import { useDispatch, useSelector } from "react-redux";
 
 const StDimmer = styled.div`
   width: 100vw;
@@ -53,12 +54,15 @@ const modalType = {
   default: { text: "알림", color: "blue" }
 };
 
-function Modal({ modalState, setModalState }) {
-  const { closeModal } = useModal(setModalState);
+function Modal() {
+  const dispatch = useDispatch();
+  const modalState = useSelector((state) => {
+    return state.modalState;
+  });
   const dimmer = useRef();
   const onClose = (e) => {
     if (e.target.onclick) {
-      closeModal();
+      dispatch(closeModal());
     }
     e.preventDefault();
   };

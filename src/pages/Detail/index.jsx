@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import UserImg from "components/letter/UserImg";
 import Button from "components/ui/Button";
@@ -6,13 +6,11 @@ import Textarea from "components/ui/Textarea";
 import Container from "components/layout/Container";
 import { changeDate } from "utils/changeDate";
 import { validateText } from "utils/validation";
-import useModal from "hooks/useModal";
-import useLetter from "hooks/useLetter";
-import { LetterContext } from "context/letterContext";
-import { ModalContext } from "context/modalContext";
 import styled from "styled-components";
 import theme from "style/Theme";
-
+import { useDispatch, useSelector } from "react-redux";
+import { selectLetter, deleteLetter, updateLetter } from "redux/modules/letters";
+import { updateModal, openModal } from "redux/modules/modal";
 const StUserImg = styled.div`
   float: right;
 `;
@@ -37,8 +35,10 @@ const StBtnGroup = styled.div`
 `;
 
 function Detail() {
-  const { letterData, setLetterData } = useContext(LetterContext);
-  const { setModalState } = useContext(ModalContext);
+  const dispatch = useDispatch();
+  const { selectedLetters } = useSelector((state) => {
+    return state.letterData;
+  });
   const param = useParams();
   const navigate = useNavigate();
   const [letter, setLetter] = useState({});
@@ -46,8 +46,6 @@ function Detail() {
   const [editMode, setEditMode] = useState(false);
 
   const letterDate = changeDate(letter.createdAt);
-  const { changeModalState, openModal } = useModal(setModalState);
-  const { selectLetter, updateLetter, deleteLetter } = useLetter(letterData, setLetterData);
   const activeEditMode = () => setEditMode(true);
   const inactiveEditMode = () => {
     setContent(letter.content);
@@ -59,39 +57,44 @@ function Detail() {
     const checkChange = letter.content !== content;
     const checkValidation = validateText(content, 300);
     if (checkChange && checkValidation === true) {
-      updateLetter({ ...letter, content });
+      dispatch(updateLetter({ ...letter, content }));
       navigate("/");
     } else if (checkValidation !== true) {
-      changeModalState({ content: checkValidation });
-      openModal();
+      dispatch(updateModal({ content: checkValidation }));
+      dispatch(openModal());
     } else {
-      changeModalState({ content: "변경된 내용이 없습니다." });
-      openModal();
+      dispatch(updateModal({ content: "변경된 내용이 없습니다." }));
+      dispatch(openModal());
     }
   };
 
   const changeModalStateDelete = () => {
-    changeModalState({
-      type: "warning",
-      content: "정말로 삭제하시겠습니까?",
-      onSummit: () => {
-        deleteLetter(param.id);
-        navigate("/");
-      }
-    });
-    openModal();
+    dispatch(
+      updateModal({
+        type: "warning",
+        content: "정말로 삭제하시겠습니까?",
+        onSummit: () => {
+          dispatch(deleteLetter(param.id));
+          navigate("/");
+        }
+      })
+    );
+    dispatch(openModal());
   };
 
   useEffect(() => {
-    const letter = selectLetter(param?.id)[0];
+    dispatch(selectLetter(param?.id));
+  }, [param.id]);
+
+  useEffect(() => {
+    const letter = selectedLetters[0];
     if (letter !== undefined) {
       setLetter(letter);
       setContent(letter.content);
     } else {
       navigate("*");
     }
-  }, [param?.id]);
-
+  }, [selectedLetters]);
   return (
     <Container title={"팬레터 수정"}>
       <StUserImg>
