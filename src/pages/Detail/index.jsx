@@ -97,7 +97,7 @@ function Detail() {
   return (
     <Container title={"팬레터 수정"}>
       <StUserImg>
-        <Avatar color="blue" avatar={letter?.avatar}></Avatar>
+        <Avatar color="blue" avatar={letter.avatar}></Avatar>
       </StUserImg>
       <StRow>
         <b>작성자</b>
