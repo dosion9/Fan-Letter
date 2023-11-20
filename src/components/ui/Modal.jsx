@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import theme from "style/Theme";
 import Button from "./Button";
-import { updateModal, openModal, closeModal } from "redux/modules/modal";
+import { closeModal } from "redux/modules/modal";
 import { useDispatch, useSelector } from "react-redux";
 
 const StDimmer = styled.div`

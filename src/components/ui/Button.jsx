@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import theme from "style/Theme";
 
-const StButton = styled.button.attrs((props) => ({
-  onClick: props?.onClick
-}))`
+const StButton = styled.button`
   padding: ${theme.spacing.sm} ${theme.spacing.xl};
   font-weight: bold;
   background-color: ${(props) => (props.$active ? theme.color[props.color] : theme.color.white)};
