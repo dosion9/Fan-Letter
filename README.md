@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![Untitled-1](https://github.com/dosion9/Fan-Letter/assets/146798554/9047b5c0-3e7c-4cb8-85e5-48e2d506e141)
 
-[팬레터함 이동하기](https://fan-letter-3msr-5nistq8t7-dosion9s-projects.vercel.app/)
+[팬레터함 이동하기](https://fan-letter-cyan.vercel.app/)
 
 ## 기술 스택 및 사용 라이브러리
 
