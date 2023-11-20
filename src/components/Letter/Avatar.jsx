@@ -11,9 +11,7 @@ const ImgWrap = styled.figure`
   overflow: hidden;
 `;
 
-const Img = styled.img.attrs((props) => ({
-  src: props.$avatar
-}))`
+const Img = styled.img`
   width: 100%;
   height: 100%;
 `;
@@ -21,7 +19,7 @@ const Img = styled.img.attrs((props) => ({
 function Avatar({ avatar, color }) {
   return (
     <ImgWrap color={color}>
-      <Img $avatar={avatar}></Img>
+      <Img src={avatar}></Img>
     </ImgWrap>
   );
 }
