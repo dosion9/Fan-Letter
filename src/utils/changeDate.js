@@ -1,3 +1,4 @@
+// 사용할 시간 단위
 const translateUnit = {
   year: "년",
   month: "개월",
@@ -6,6 +7,11 @@ const translateUnit = {
   min: "분"
 };
 
+/**
+ * new Date를 통해 {year, month, date, hour, min} Object 로 반환하는 함수
+ * @param {date} time new Date가 사용할 수 있는 시간
+ * @returns - {year, month, date, hour, min} Object
+ */
 function changeDate(time) {
   const dataDate = new Date(time);
 
@@ -22,8 +28,8 @@ function changeDate(time) {
 
 /**
  * letter에 출력해줄 시간 데이터를 반환하는 함수
- * @param {*} time 시간
- * @returns 차이가 나는 시간을 반환 ex) 1년 전, 5분 전
+ * @param {date} time new Date가 사용할 수 있는 시간
+ * @returns 차이가 나는 시간을 반환 [ex) 1년 전, 5분 전 등]
  */
 function expressLetterDate(time) {
   const dateObj = changeDate(time);
