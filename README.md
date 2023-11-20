@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# 그룹 아티스트 팬레터함
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 프로젝트
 
-In the project directory, you can run:
+### project
 
-### `npm start`
+![Untitled-1](https://github.com/dosion9/Fan-Letter/assets/146798554/9047b5c0-3e7c-4cb8-85e5-48e2d506e141)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[팬레터함 이동하기](https://fan-letter-3msr-5nistq8t7-dosion9s-projects.vercel.app/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 기술 스택 및 사용 라이브러리
 
-### `npm test`
+- React
+- Redux
+- React Router Dom
+- Styled Components
+- Uuid
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 프로젝트 설치
 
-### `npm run build`
+### clone repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git init
+git clone https://github.com/dosion9/Fan-Letter.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Install npm dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm install
+```
 
-### `npm run eject`
+### Start dev-server
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+npm run start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 프로젝트 구조 (Redux)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+📦 src
+ ┣ 📂 assets
+ ┃ ┗ 📂 img
+ ┣ 📂 components
+ ┃ ┣ 📂 layout
+ ┃ ┣ 📂 letter
+ ┃ ┗ 📂 ui
+ ┣ 📂 data
+ ┣ 📂 pages
+ ┃ ┣ 📂 Detail
+ ┃ ┣ 📂 Home
+ ┃ ┗ 📂 NotFound
+ ┣ 📂 redux
+ ┃ ┣ 📂 config
+ ┃ ┗ 📂 modules
+ ┣ 📂 shared
+ ┣ 📂 style
+ ┣ 📂 utils
+ ┣ 📜 App.jsx
+ ┣ 📜 App.test.jsx
+ ┗ 📜 index.jsx
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 요구사항
 
-## Learn More
+### 필수 구현 사항
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 팬레터 CRUD 구현 (작성, 조회, 수정, 삭제)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ✔️ Home 페이지에서 게시물 조회 기능 구현 (Read)
+- ✔️ Home 페이지에서 팬레터 등록 기능 구현 (Create)
+- ✔️ Detail 페이지 구현 (Read)
+- ✔️ Detail 페이지에서 팬레터 내용 수정 구현 (Update)
+- ✔️ Datail 페이지에서 팬레터 삭제 구현 (Delete)
 
-### Code Splitting
+#### styled-components를 이용한 스타일링
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- ✔️ (이번 과제 한정) 인라인 스타일링이나 일반 css 파일 사용 지양
+- ✔️ styled-components에 props를 넘겨 조건부 스타일링 적용
+- ✔️ reset.css 적용 및 box-sizing은 border-box 지정
 
-### Analyzing the Bundle Size
+#### uuid 라이브러리 사용
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- ✔️ uuid 라이브러리를 사용해 팬레터 id 지정
 
-### Making a Progressive Web App
+### 선택 구현 사항
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### 모달 구현
 
-### Advanced Configuration
+- ✔️ window.alert || window.conform 대신 모달창 직접 구현
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### 만능 버튼 구현
 
-### Deployment
+- ✔️ 하나의 버튼 컴포넌트를 재사용 가능하도록 작성
+- ✔️ props로 버튼 크기나 텍스트 등 전달
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### 로컬스토리지 이용
 
-### `npm run build` fails to minify
+- ✔️ 팬레터 데이터를 로컬스토리지에 저장, 가져오기
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### 검색 기능 구형
+
+- ❌ 팬레터 데이터를 로컬스토리지에 저장, 가져오기
