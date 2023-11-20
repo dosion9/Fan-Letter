@@ -52,17 +52,19 @@ const letterData = (state = initialState, action) => {
         writedTo,
         id: uuidv4()
       };
+      localStorage.setItem("letter", JSON.stringify([...state.letters, letter]));
       return { ...state, letters: [...state.letters, letter] };
     case SELECT_LETTER:
       const selectedInfo = action.payload;
       const selectedLetters = state.letters.filter((n) => n.writedTo === selectedInfo || n.id === selectedInfo);
-
       return { ...state, selectedLetters: [...selectedLetters] };
     case UPDATE_LETTER:
       const updatedLetters = state.letters.map((n) => (n.id === action.payload.id ? action.payload : n));
+      localStorage.setItem("letter", JSON.stringify(updatedLetters));
       return { ...state, letters: [...updatedLetters] };
     case DELETE_LETTER:
       const deletedLetters = state.letters.filter((n) => n.id !== action.payload);
+      localStorage.setItem("letter", JSON.stringify(deletedLetters));
       return { ...state, letters: [...deletedLetters] };
     default:
       return state;
