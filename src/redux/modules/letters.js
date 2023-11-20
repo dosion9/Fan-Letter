@@ -1,6 +1,5 @@
 import mockLetterData from "data/mockLetterData";
 import { v4 as uuidv4 } from "uuid";
-import userImg from "assets/img/userImg.png";
 
 const CREATE_LETTER = "letters/CREATE_LETTER";
 const SELECT_LETTER = "letters/SELECT_LETTER";
@@ -47,7 +46,8 @@ const letterData = (state = initialState, action) => {
       const letter = {
         createdAt: new Date().toISOString(),
         nickname,
-        avatar: userImg,
+        avatar:
+          "https://mblogthumb-phinf.pstatic.net/MjAyMDA2MTBfMTY1/MDAxNTkxNzQ2ODcyOTI2.Yw5WjjU3IuItPtqbegrIBJr3TSDMd_OPhQ2Nw-0-0ksg.8WgVjtB0fy0RCv0XhhUOOWt90Kz_394Zzb6xPjG6I8gg.PNG.lamute/user.png?type=w800",
         content,
         writedTo,
         id: uuidv4()
